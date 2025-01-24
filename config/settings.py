@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     # my_apps
     'account',
+    'patients',
 ]
 
 MIDDLEWARE = [
