@@ -1,9 +1,9 @@
-from dj_rest_auth.views import LogoutView
+from dj_rest_auth.views import LogoutView, LoginView
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import RetrieveModelMixin, ListModelMixin
 from .models import CustomUser
 from rest_framework import permissions, generics
-from . import serializers
+from . import serializers, login_serializer
 
 
 class UserViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
@@ -21,5 +21,8 @@ class UserRegisterView(generics.CreateAPIView):
     serializer_class = serializers.UserRegisterSerializer
 
 # Это кастомизатор для модуля logout. Мы просто устанавливаем пермишенсы
-class CastomLogoutView(LogoutView):
+class CustomLogoutView(LogoutView):
     permission_classes = (permissions.IsAuthenticated,)
+
+class CustomLoginView(LoginView):
+    serializer_class = login_serializer.CustomLoginSerializer
